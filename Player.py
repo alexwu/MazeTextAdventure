@@ -3,7 +3,9 @@ class Player(object):
     #This constructor takes a name and sees if the save file exists.
     def __init__ (self, name):
 
+        #Checks for existing save file
         if exists(name):
+            #Names the Player instance
             self.playerName = name
         
             #Placeholder, should take whatever is in the file

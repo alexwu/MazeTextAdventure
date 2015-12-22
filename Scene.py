@@ -1,5 +1,6 @@
 class Scene( object ):
 
-    def __init__ (self, sceneMap):
-        self.currentScene = sceneMap
-
+    #Every subclass of scence should have an 'enter' function.
+    def enter (self):
+        print "This is the scene class. You need a subclass, dude."
+        exit(1)
