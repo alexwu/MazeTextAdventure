@@ -1,13 +1,24 @@
 class Player(object):
 
-    def __init__ (self):
-        self.playerName = raw_input("What is your name? ")
-        self.playerInv = null                                #Placeholder, will change.
-        self.playerLoc = startLoc                            #Placeholder, but this is the idea.
+    #This constructor takes a name and sees if the save file exists.
+    def __init__ (self, name):
 
-    def __init__ (self, name, inventory, location):
-        self.playerName = name
-        self.playerInv = inventory
-        self.playerLoc = location
+        if exists(name):
+            self.playerName = name
+        
+            #Placeholder, should take whatever is in the file
+            self.playerInv = #shit saved
+
+            #Placeholder, but this is the idea.
+            self.playerLoc = #location designated by save file
+        
+        else:
+            self.playerName = name
+            self.playerInv = #empty list (because you're starting a new game!)
+            self.playerLoc = #starting location
+
+    #When the player enters the command such as "Look around", it should refer to this funciton.
+    def look (self):
+        pass
 
 
