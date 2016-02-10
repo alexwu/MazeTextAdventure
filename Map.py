@@ -1,7 +1,11 @@
+from BeginningRoom import BeginningRoom
+from Death import Death
+
 class Map(object):
 
     scenes = {
             'beginning': BeginningRoom(),
+            'death': Death()
     }
 
     def __init__(self):

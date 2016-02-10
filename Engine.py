@@ -1,4 +1,4 @@
-class Engine(self):
+class Engine(object):
     
     def __init__ (self, sceneMap):
         self.currentMap = sceneMap
