@@ -19,6 +19,7 @@ class BeginningRoom(Scene):
                 print "You turn the door knob and open the door slowly, "
                 print "creaking as if it had been oiled by the devil."
                 print "You're likely screwed."
+                return "hallway"
 
             else:
                 print "wow you dumb or something you can't do that \n"

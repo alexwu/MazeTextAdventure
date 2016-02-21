@@ -1,5 +1,7 @@
 from BeginningRoom import BeginningRoom
 from Death import Death
+from Hallway import Hallway
+
 
 class Map(object):
 
