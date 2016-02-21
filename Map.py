@@ -5,6 +5,7 @@ class Map(object):
 
     scenes = {
             'beginning': BeginningRoom(),
+            'hallway': Hallway(),
             'death': Death()
     }
 
