@@ -1,6 +1,7 @@
 from BeginningRoom import BeginningRoom
 from Death import Death
 from Hallway import Hallway
+from CombatRoom import CombatRoom
 
 
 class Map(object):
@@ -8,6 +9,7 @@ class Map(object):
     scenes = {
             'beginning': BeginningRoom(),
             'hallway': Hallway(),
+            'combat': CombatRoom(),
             'death': Death()
     }
 
