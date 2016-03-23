@@ -3,24 +3,33 @@ class Player(object):
     #This constructor takes a name and sees if the save file exists.
     def __init__ (self, name):
 
-        #Checks for existing save file
-        if exists(name):
-            #Names the Player instance
-            self.playerName = name
-        
-            #Placeholder, should take whatever is in the file
-            self.playerInv = #shit saved
+        self.name = name 
+        self.health = 0
+        self.location = "beginning"
+        self.inventory = {}
 
-            #Placeholder, but this is the idea.
-            self.playerLoc = #location designated by save file
-        
-        else:
-            self.playerName = name
-            self.playerInv = #empty list (because you're starting a new game!)
-            self.playerLoc = #starting location
+    def getName():
+        return self.name
 
-    #When the player enters the command such as "Look around", it should refer to this funciton.
-    def look (self):
-        pass
+    def getHealth():
+        return self.health
+
+    #Positive when adding health, negative when removing health
+    def changeHealth(modifier):
+        self.health += modifier
+
+    def getLoc():
+        return self.location
+
+    def setLoc(loc):
+        self.location = loc
+
+    #def getItems():
+        #return inventory.item()
+
+    #item is a string
+    def addItem( item ):
+        inventory[item] = True
+
 
 

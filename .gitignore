@@ -1,3 +1,8 @@
-#Ignore any compiled code
-*.pyc
-.idea/
+#Ignore everything
+*
+
+#Except for these:
+
+!.gitignore
+!*.py
+!README
