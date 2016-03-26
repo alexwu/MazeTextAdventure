@@ -31,5 +31,22 @@ class Player(object):
     def addItem( item ):
         inventory[item] = True
 
+    def writeSave():
+        saveFile = open(self.name, 'w')
+
+        saveFile.write(str(health) + '\n')
+        saveFile.write(self.location)
+        
+        for item in inventory:
+            saveFile.write(item + '\n')
+
+    def printInfo():
+        print "Name: " + self.name
+        print "Health: " + self.health
+        print "Location: " + self.location
+        print "Items: ",
+        for item in inventory:
+            print item + ", ",
+        print '\n'
 
 

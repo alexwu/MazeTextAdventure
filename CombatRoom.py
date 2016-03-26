@@ -1,5 +1,6 @@
 from Scene import Scene
 from Death import Death
+from Player import Player
 from sys import exit
 from random import randint
 
@@ -7,7 +8,6 @@ class CombatRoom(Scene):
 
     def enter(self):
 
-        health = 5
         enemy_health = 5
         charging = False
         
@@ -20,7 +20,7 @@ class CombatRoom(Scene):
 
         while True:
 
-            if health == 0:
+            if player.getHealth() == 0:
                 return "death"
             
             command = raw_input("> ")
@@ -52,8 +52,8 @@ class CombatRoom(Scene):
                 print "to fight your foe."
                 print
 
-                while health > 0 and enemy_health > 0:
-                    print "Health: ", health
+                while player.getHealth() > 0 and enemy_health > 0:
+                    print "Health: ", self.health
                     print "Enemy Health: ", enemy_health
                     print "Combat Options:"
                     print "\t1.) Attack"
@@ -73,7 +73,8 @@ class CombatRoom(Scene):
                             print "slash out at the figure as he comes into range, but you are unable"
                             print "to stop the sheer power of his attack, as you are thrown against the"
                             print "wall and feel your resolve weakening."
-                            health = health - 1
+                            #player.Health = health - 1
+                            player.changeHealth(-1)
 
                         elif command == "Block" or command == "block" or command == "2":
                             block_success = randint(0, 3)
@@ -86,7 +87,8 @@ class CombatRoom(Scene):
                                 print "are knocked to the ground by his mighty attack. He spits on you"
                                 print "and then proceeds to kick you in the nuts repeatedly for the"
                                 print "next couple of minutes"
-                                health = health - 2
+                                #health = health - 2
+                                player.changeHealth(-2)
 
                         elif command == "Counter" or command == "counter" or command == "3":
                             counter_success = randint(0,2)
@@ -100,13 +102,15 @@ class CombatRoom(Scene):
                                 print "mistime your dodge as he stabs you in the stomach and burps nonstop"
                                 print "into your eyes. You scream in pain as your eyes feel as if they're"
                                 print "starting to melt. Jesus man, that kind of sucks."
-                                health = health - 3
+                                #health = health - 3
+                                player.changeHealth(-3)
 
                         else:
                             print "stand around like an idiot not comprehending the charging man before you."
                             print "The man impales you through the chest and kicks you off his sword. He laughs"
                             print " like a drunken babboon, unable to believe to the idiot challenging him."
-                            health = health - 5
+                            #health = health - 5
+                            player.changeHealth(-5)
 
                     elif enemy_move > 2 and enemy_move < 6:
                         print "The dark figure holds his ground, continuing his large toothy grin."
@@ -117,7 +121,8 @@ class CombatRoom(Scene):
                             if counter_success == 0:
                                 print "see an opportunity to attack and lunge at him. He shreaks in laughter"
                                 print "as he kicks you in the groin and cuts off one of your non-vital limbs."
-                                health = health - 2
+                                #health = health - 2
+                                player.changeHealth(-5)
                             else:
                                 print "make a successful strike at his chest. 'FUUUUUUUUU' he shouts. Nice job!"
                                 print "You actually did something well."
@@ -154,7 +159,8 @@ class CombatRoom(Scene):
                                 print "You both awkwardly stick each other with the tips of your respective weapons."
                                 print "You both grimace awkwardly like a couple having sex for the first time."
                                 print "You guys are good at this."
-                                health = health - 1
+                                #health = health - 1
+                                player.changeHealth(-1)
                                 enemy_health = enemy_health - 1
 
                         elif command == "Block" or command == "block" or command == "2":
@@ -165,7 +171,8 @@ class CombatRoom(Scene):
                             else:
                                 print "you drop your sword as you try to block his weak swing. He chops off one"
                                 print "of your ears and blops it into his mouth. He burps in happiness."
-                                health = health - 1
+                                #health = health - 1
+                                player.changeHealth(-1)
 
                         elif command == "Counter" or command == "counter" or command == "3":
                             counter_success = randint(0, 2)
@@ -177,17 +184,19 @@ class CombatRoom(Scene):
                                 enemy_health = enemy_health - 2
                             else:
                                 print "fail your dodge as he strikes off a large chunk of your hair. Oh no."
-                                health = health - 1
+                                #health = health - 1
+                                player.changeHealth(-1)
 
                         else:
                             print "gladly submit yourself to his attack, as he chops off both of your arms." 
                             print "He then kicks you to the ground and begins to fart nonstop directly into"
                             print "your nostrils. You are broken."
-                            health = health - 5
+                            #health = health - 5
+                            player.changHealth(-5)
 
                     print '\n'
                     
-                    if health <= 0:
+                    if player.getHealth() <= 0:
                         print "Any last bit of life leaves your body as you collapse to the ground."
                         print "The man laughs as he picks you up, and devours you in one bite."
                         print '\n'
