@@ -11,6 +11,7 @@ while True:
         print "What will be your new character's name?"
         player = Player(raw_input('> '))
 
+        player.changeHealth(5)
         print "Welcome to the game " + player.name + "! Good luck!"
         break
     elif strInput == '2':
@@ -18,20 +19,14 @@ while True:
         
         while True:
             try:
-                saveFile = open(raw_input('> '), 'r')
+                name = raw_input('> ')
+                saveFile = open(name, 'r')
                 break
             except IOError:
                 print "This save file does not exist! Try again!"
         
-        player.changeHealth(int(saveFile.readline()))
-        player.setLoc(saveFile.readline())
-       
-        item = saveFile.readline()
-        while item:
-            player.addItem(item)
-            item = saveFile.readline()
-
-        saveFile.close()
+        player = Player(name)
+        player.readSave(saveFile)
         print "Welcome back " + player.name + "! Good luck!"
         break
     else:
@@ -39,10 +34,10 @@ while True:
 
 
 gameMap = Map()
-if player.Loc != "beginning":
+if player.getLoc() != "beginning":
     gameMap.nextScene(player.getLoc())
 
 gameInstance = Engine(gameMap)
-gameInstance.play()
+gameInstance.play(player)
 
 

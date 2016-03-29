@@ -3,7 +3,7 @@ from Scene import Scene
 
 class BeginningRoom(Scene):
 
-    def enter(self):
+    def enter(self, player):
         print "You're in the start room! Congratulations motherfucker!"
         print "There's a door in front of you. It looks ominous."
         print "What the fuck could you possibly want to do now?"

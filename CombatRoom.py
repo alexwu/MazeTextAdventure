@@ -8,6 +8,11 @@ class CombatRoom(Scene):
 
     def enter(self):
 
+        player.setLoc("combat")
+        print "Saving...",
+        player.writeSave()
+        print "DONE"
+
         enemy_health = 5
         charging = False
         

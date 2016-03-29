@@ -2,10 +2,14 @@ from Scene import Scene
 
 class Hallway(Scene):
 
-    def enter(self):
-        
-        light = False;
-        
+    def enter(self, player):
+      
+        player.setLoc('hallway')
+        player.addItem("match")
+        print "Saving...",
+        player.writeSave()
+        print "DONE"
+
         print
         print "OH SHIT THIS HALLWAY IS DARK."
         print "HOW ARE YOU GOING TO DEAL WITH THIS, HUH?!"
@@ -16,7 +20,10 @@ class Hallway(Scene):
 
             command = raw_input('> ')
 
-            if command == "jump":
+            if command == "info":
+                player.printInfo()
+
+            elif command == "jump":
                 print "With all your might, you jump straight up, determined", 
                 print "to escape this dark and dreadful place."
                 print "You fly through the ceiling of the room only be",
@@ -24,17 +31,18 @@ class Hallway(Scene):
                 return "death"
 
             elif command == "light match" or command == "use match" or command == "match":
-                if light == False:
-                    print "The darkened room suddenly becomes illuminated by the", 
-                    print "tiny match, revealing three doors in the room." 
-                    print "One east, one west, and one north."
-                    print "WHATCHA GONNA DO NOW, HUH?"
-                    light = True
+                if not player.getState('hallway_lit'):
+                    if player.getItem("match"):
+                        print "The darkened room suddenly becomes illuminated by the", 
+                        print "tiny match, revealing three doors in the room." 
+                        print "One east, one west, and one north."
+                        print "WHATCHA GONNA DO NOW, HUH?"
+                        player.changeState('hallway_lit', True)
                 else:
                     print "The match is already lit. Wtf are you doing (wo)man?"
             
             elif command == "look" or command == "look around":
-                if light == False:
+                if not player.getState('hallway_lit'):
                     print "It's dark. Really dark. WHAT ELSE DO YOU WANT?!"
 
                 else:
@@ -42,7 +50,8 @@ class Hallway(Scene):
                     print "left, and to your right. That better?"
             
             elif command == "go left" or command == "go west":
-                if light == False:
+                
+                if not player.getState('hallway_lit'):
                     print "You walk straight into the wall and fall over.",
                     print "Feel dumb yet?"
                 else:
@@ -50,7 +59,8 @@ class Hallway(Scene):
                     print "haven't written that room yet, so enjoy your infinite loop"
 
             elif command == "go right" or command == "go east":
-                if light == False:
+                
+                if not player.getState('hallway_lit'):
                     print "You right to the right, only to trip over your own", 
                     print "shoelaces. Who doesn't tie their shoes these days?"
                 else:
@@ -58,7 +68,8 @@ class Hallway(Scene):
                     return 'combat'
 
             elif command == "go forward" or command == "go north":
-                if light == False:
+                
+                if not player.getState('hallway_lit'):
                     print "You run forward at full speed, only to be met"
                     print "by a door. Ouch."
                 else:
