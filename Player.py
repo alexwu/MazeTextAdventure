@@ -32,6 +32,9 @@ class Player(object):
 #        for item, state inventory.item()
 #            if state:
 #                print item
+    
+    def getItem( self, item ):
+      return self.inventory[item]
 
     #item is a string
     def addItem( self, item ):
@@ -46,19 +49,21 @@ class Player(object):
 
     def readSave(self, saveFile):
         self.changeHealth(int(saveFile.readline()))
-        self.setLoc(saveFile.readline())
+        self.setLoc(saveFile.readline().splitlines()[0])
        
         item = saveFile.readline().splitlines()
         while item:
-            self.addItem(item)
+            self.addItem(item[0])
+            print item
             item = saveFile.readline().splitlines()
 
         event = saveFile.readline().splitlines()
         while event:
-            self.changeState(event, True)
+            self.changeState(event[0], True)
             event = saveFile.readline().splitlines()
 
         saveFile.close()
+
     def writeSave(self):
         saveFile = open(self.name, 'w')
 

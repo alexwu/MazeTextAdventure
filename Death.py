@@ -16,6 +16,6 @@ class Death(Scene):
       
     ]
 
-    def enter(self):
+    def enter(self, player):
         print Death.statements[randint(0, len(self.statements)-1)]
         exit(1)

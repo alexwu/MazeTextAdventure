@@ -4,9 +4,10 @@ from Player import Player
 
 print "Hello! Welcome to my demo text adventure! Would you like to (1) make a new"
 print "character or (2) continue from a previous save?"
-strInput = raw_input('1 or 2: ')
 
 while True:
+
+    strInput = raw_input('1 or 2: ')
     if strInput == '1':
         print "What will be your new character's name?"
         player = Player(raw_input('> '))

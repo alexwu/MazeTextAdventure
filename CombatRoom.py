@@ -6,7 +6,7 @@ from random import randint
 
 class CombatRoom(Scene):
 
-    def enter(self):
+    def enter(self, player):
 
         player.setLoc("combat")
         print "Saving...",
@@ -58,7 +58,7 @@ class CombatRoom(Scene):
                 print
 
                 while player.getHealth() > 0 and enemy_health > 0:
-                    print "Health: ", self.health
+                    print "Health: ", player.getHealth()
                     print "Enemy Health: ", enemy_health
                     print "Combat Options:"
                     print "\t1.) Attack"
