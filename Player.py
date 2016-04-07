@@ -6,11 +6,13 @@ class Player(object):
         self.name = name 
         self.health = 0
         self.location = 'beginning'
-        self.inventory = {}
-        self.world = {
-            'hallway_lit': False,
-            'combat_cleared': False
-        } 
+        self.inventory = [
+            False       #match          
+        ]
+        self.world = [
+            False,          #hallway_lit
+            False           #combat_cleared
+        ] 
 
     def getName(self):
         return self.name
@@ -33,16 +35,16 @@ class Player(object):
 #            if state:
 #                print item
     
-    def getItem( self, item ):
-      return self.inventory[item]
+    def getItem( self, index ):
+      return self.inventory[index]
 
     #item is a string
-    def addItem( self, item ):
-        self.inventory[item] = True
+    def addItem( self, index ):
+        self.inventory[index] = True
     
-    #string:boolean
-    def getState( self, event ):
-        return self.world[event]
+    #index:boolean
+    def getState( self, index ):
+        return self.world[index]
 
     def changeState( self, event, state ):
         self.world[event] = state
@@ -51,16 +53,17 @@ class Player(object):
         self.changeHealth(int(saveFile.readline()))
         self.setLoc(saveFile.readline().splitlines()[0])
        
-        item = saveFile.readline().splitlines()
-        while item:
-            self.addItem(item[0])
-            print item
-            item = saveFile.readline().splitlines()
+        items = saveFile.readline().splitlines()[0]
+        #for c, state in zip(items, self.inventory):
+        for i in range(0, len(self.inventory) - 1):
+            if items[i] == "1":
+                self.addItem(i, True) 
 
-        event = saveFile.readline().splitlines()
-        while event:
-            self.changeState(event[0], True)
-            event = saveFile.readline().splitlines()
+        events = saveFile.readline().splitlines()[0]
+        for c in range(0, len(self.world) - 1):
+            if events[c] == "1":
+                self.changeState(c, True)
+            #events = saveFile.readline().splitlines()
 
         saveFile.close()
 
@@ -69,15 +72,26 @@ class Player(object):
 
         saveFile.write(str(self.health) + '\n')
         saveFile.write(self.location + '\n')
+       
+        items = ""
+        #for item, state in self.inventory.iteritems():
+        for state in self.inventory:
+            if state:
+                items += "1"
+            else:
+                items += "0"
         
-        for item, state in self.inventory.iteritems():
+        saveFile.write(items + '\n')
+        
+        #for event, state in self.world.iteritems():
+        items = ""
+        for state in self.world:
             if state:
-                saveFile.write(item + '\n')
-        print ""
+                items += "1"
+            else:
+                items += "0"
 
-        for event, state in self.world.iteritems():
-            if state:
-                saveFile.write(event + '\n')
+        saveFile.write(items + '\n')
 
         saveFile.close()
 
@@ -86,9 +100,12 @@ class Player(object):
         print "Health: " + str(self.health)
         print "Location: " + self.location
         print "Items: ",
-        for item, state in self.inventory.iteritems():
-            if state:
-                print item + '\n',
-        print '\n'
+        for state in self.inventory:
+            print state #+ '\n',
+
+        print "Events: ", 
+        for state in self.world:
+            print state
+        #print '\n'
 
 

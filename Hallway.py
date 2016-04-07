@@ -5,16 +5,25 @@ class Hallway(Scene):
     def enter(self, player):
       
         player.setLoc('hallway')
-        player.addItem("match")
+        
+        if not player.getItem(0):
+            player.addItem(0)
+
         print "Saving...",
         player.writeSave()
         print "DONE"
 
         print
-        print "OH SHIT THIS HALLWAY IS DARK."
-        print "HOW ARE YOU GOING TO DEAL WITH THIS, HUH?!"
-        print "BY THE WAY YOU HAVE A MATCH. NEAT, HUH?"
-        print '\n'
+        if player.getState(0):
+            print "You enter an empty room with four doors, one leading"
+            print "to the beginning room, and in the west, north, and east"
+            print "directions."
+
+        else:
+            print "OH SHIT THIS HALLWAY IS DARK."
+            print "HOW ARE YOU GOING TO DEAL WITH THIS, HUH?!"
+            print "BY THE WAY YOU HAVE A MATCH. NEAT, HUH?"
+        print
 
         while True:
 
@@ -31,18 +40,18 @@ class Hallway(Scene):
                 return "death"
 
             elif command == "light match" or command == "use match" or command == "match":
-                if not player.getState('hallway_lit'):
-                    if player.getItem("match"):
+                if not player.getState(0):
+                    if player.getItem(0):
                         print "The darkened room suddenly becomes illuminated by the", 
                         print "tiny match, revealing three doors in the room." 
                         print "One east, one west, and one north."
                         print "WHATCHA GONNA DO NOW, HUH?"
-                        player.changeState('hallway_lit', True)
+                        player.changeState( 0, True)
                 else:
                     print "The match is already lit. Wtf are you doing (wo)man?"
             
             elif command == "look" or command == "look around":
-                if not player.getState('hallway_lit'):
+                if not player.getState(0):
                     print "It's dark. Really dark. WHAT ELSE DO YOU WANT?!"
 
                 else:
@@ -51,7 +60,7 @@ class Hallway(Scene):
             
             elif command == "go left" or command == "go west":
                 
-                if not player.getState('hallway_lit'):
+                if not player.getState(0):
                     print "You walk straight into the wall and fall over.",
                     print "Feel dumb yet?"
                 else:
@@ -60,7 +69,7 @@ class Hallway(Scene):
 
             elif command == "go right" or command == "go east":
                 
-                if not player.getState('hallway_lit'):
+                if not player.getState(0):
                     print "You right to the right, only to trip over your own", 
                     print "shoelaces. Who doesn't tie their shoes these days?"
                 else:
@@ -69,7 +78,7 @@ class Hallway(Scene):
 
             elif command == "go forward" or command == "go north":
                 
-                if not player.getState('hallway_lit'):
+                if not player.getState(0):
                     print "You run forward at full speed, only to be met"
                     print "by a door. Ouch."
                 else:
@@ -79,8 +88,4 @@ class Hallway(Scene):
     
             else:
                 print "idk what you just said. i'ma go get tacos now."
-
-            print '\n'
-
-            
 

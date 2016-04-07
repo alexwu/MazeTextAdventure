@@ -23,6 +23,10 @@ class CombatRoom(Scene):
         print "basketball shorts. Currently, he does not appear to be dangerous."
         print '\n'
 
+        print "What would you like to do?"
+        print "\t1.) Approach man"
+        print "\t2.) Leave room"
+
         while True:
 
             if player.getHealth() == 0:
@@ -45,7 +49,7 @@ class CombatRoom(Scene):
 
                 return "death"
 
-            elif command == "approach figure" or command == "approach" or command == "go forward":
+            elif command == "1" or command == "approach figure" or command == "approach" or command == "go forward":
                 print "Hearing your footsteps, the dark figure slowly turns to face you."
                 print "As the figure's face comes into view, you realize the wide, deathly"
                 print "grin on his face. With his eyes wide open, his pupils make contact"
@@ -197,7 +201,7 @@ class CombatRoom(Scene):
                             print "He then kicks you to the ground and begins to fart nonstop directly into"
                             print "your nostrils. You are broken."
                             #health = health - 5
-                            player.changHealth(-5)
+                            player.changeHealth(-5)
 
                     print '\n'
                     
@@ -211,7 +215,12 @@ class CombatRoom(Scene):
                         print "The man falls to his knees with a defeated look on his face. 'WEEUUUWEEUUUWEEEUU'"
                         print "he cries out, as he disintegrates before your eyes. Jeez, you're kind of a jerk."
                         print '\n'
+                        player.changeState(1, True)
                         exit(-1)
+
+            elif command == "2" or command.lower() == "leave":
+               return "hallway"
+
             else:
                 print "YOU IDIOT WHAT DO YOU THINK YOU'RE SUPPOSED TO DO IN THIS ROOM, HUH?!"
                 print '\n'
