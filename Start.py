@@ -1,9 +1,12 @@
+import textwrap
 from Map import Map
 from Engine import Engine
 from Player import Player
 
-print "Hello! Welcome to my demo text adventure! Would you like to (1) make a new"
-print "character or (2) continue from a previous save?"
+print textwrap.dedent("""\
+        Hello! Welcome to my demo text adventure! Would you like to 
+        (1) make a new character or (2) continue from a previous save?
+        """)
 
 while True:
 
@@ -13,10 +16,10 @@ while True:
         player = Player(raw_input('> '))
 
         player.changeHealth(5)
-        print "Welcome to the game " + player.name + "! Good luck!"
+        print "\nWelcome to the game " + player.getName() + "! Good luck!\n"
         break
     elif strInput == '2':
-        print "What is your character's name?"
+        print "\nWhat is your character's name?"
         
         while True:
             try:
@@ -28,11 +31,13 @@ while True:
         
         player = Player(name)
         player.readSave(saveFile)
-        print "Welcome back " + player.name + "! Good luck!"
+        print "\nWelcome back " + player.getName() + "! Good luck!\n"
+        
         break
     else:
-        print "Invalid option! Try again!"
+        print "\nInvalid option! Try again!"
 
+    print
 
 gameMap = Map()
 if player.getLoc() != "beginning":

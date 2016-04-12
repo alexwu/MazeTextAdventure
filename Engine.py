@@ -6,8 +6,6 @@ class Engine(object):
     def play (self, player):
         #currentScene = self.currentMap.openingScene()
         currentScene = self.currentMap.nextScene(player.getLoc())
-        print "Loading: " + player.getLoc()
-        print currentScene
         lastScene = self.currentMap.nextScene('end')
 
         while currentScene != lastScene:
