@@ -10,3 +10,6 @@ What's left?
   Possibly create a room that creates randomly generated enemies with different
   stats and weaknesses. (Might be done in a different project, possibly something
   in Unity/Graphical based).
+
+Usage:  python [every .py file except Start.py]
+        python Start.py
