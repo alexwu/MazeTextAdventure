@@ -1,3 +1,7 @@
+#File: Death.py
+#Author: Alexander Wu
+#Purpose: Implements the death scene a player enters upon failure/death.
+
 from sys import exit
 from random import randint
 from Scene import Scene
@@ -16,6 +20,8 @@ class Death(Scene):
       
     ]
 
+    #Upon entry of the scene, a death statement is randomly selected and the
+    #game is exited.
     def enter(self, player):
         print Death.statements[randint(0, len(self.statements)-1)]
         exit(1)

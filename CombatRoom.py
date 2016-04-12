@@ -1,3 +1,7 @@
+#File: CombatRoom.py
+#Author: Alexander Wu
+#Purpose: Implements the Combat test room.
+
 from Scene import Scene
 from Death import Death
 from Player import Player
@@ -5,15 +9,15 @@ from sys import exit
 from random import randint
 import textwrap
 
-
-
 class CombatRoom(Scene):
 
     def enter(self, player):
 
+        #Sets location and saves
         player.setLoc("combat")
         player.writeSave()
 
+        #Sets the enemy's health, perhaps make an enemy class.
         enemy_health = 5
         
         print textwrap.dedent("""\

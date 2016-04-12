@@ -1,3 +1,7 @@
+#File: Hallway.py
+#Author: Alexander Wu
+#Purpose: Implements the hallway room.
+
 import textwrap
 from Scene import Scene
 

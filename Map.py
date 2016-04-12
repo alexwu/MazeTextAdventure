@@ -1,3 +1,7 @@
+#File: Map.py
+#Author: Alexander Wu
+#Purpose: Implements the Map class. Allows for the changing of scenes.
+
 from BeginningRoom import BeginningRoom
 from Death import Death
 from Hallway import Hallway

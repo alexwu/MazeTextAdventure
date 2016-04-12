@@ -1,10 +1,16 @@
+#File: BeginningRoom.py
+#Author: Alexander Wu
+#Purpose: Implements the starting room of the game.
+
+
 import textwrap
 from Scene import Scene
 
 class BeginningRoom(Scene):
 
     def enter(self, player):
-        
+       
+        #Autosave on entry of room
         player.writeSave()
 
         print textwrap.dedent("""\
@@ -16,7 +22,7 @@ class BeginningRoom(Scene):
         while True:
             command = raw_input("> ")
 
-            if command == "jump":
+            if command == "jump" or command == "quit":
                 print textwrap.dedent("""\
                       You jump so high that your head crashes in to the ceiling
                       and you die a slow unfortunate death.
@@ -32,5 +38,4 @@ class BeginningRoom(Scene):
 
             else:
                 print "wow you dumb or something you can't do that"
-
             print
